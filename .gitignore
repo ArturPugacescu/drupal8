@@ -16,6 +16,7 @@ docroot/sites/*/private
 
 # Ignore Drupal's configuration files.
 docroot/sites/*/settings*.php
+!docroot/sites/*/settings.php
 docroot/sites/*/services*.yml
 docroot/sites/sites.php
 
