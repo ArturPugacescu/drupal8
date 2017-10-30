@@ -53,9 +53,12 @@ fi
 echo "Waiting 10s for MySQL to initialize...";
 sleep 10
 
-# Site initialization
+# Download dependencies.
+echo -e "${green_bg} Step 2 ${NC}${green} Downloading dependencies...${NC}"
 composer install
-echo -e "${green_bg} Step 2 ${NC}${green} Initializing site...${NC}"
+
+# Site initialization
+echo -e "${green_bg} Step 3 ${NC}${green} Initializing site...${NC}"
 # This runs inside cli using http://docs.docksal.io/en/v1.4.0/fin/custom-commands/#executing-commands-inside-cli
 fin init-site
 
