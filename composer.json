@@ -2,7 +2,7 @@
     "name": "Drupal",
     "description": "Drupal project.",
     "type": "project",
-    "license": "proprietary",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "",
@@ -16,19 +16,24 @@
         }
     ],
     "require": {
-        "composer/installers": "^1.0.20",
+        "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6",
-        "drupal-composer/drupal-scaffold": "dev-master",
-        "drupal/console": "~1.0",
-        "drupal/core": "8.5.1",
-        "drush/drush": "^8.1"
+        "drupal-composer/drupal-scaffold": "^2.5",
+        "drupal/console": "^1.0.2",
+        "drupal/core": "~8.5.3",
+        "drush/drush": "^9.0.0",
+        "vlucas/phpdotenv": "^2.4",
+        "webflo/drupal-finder": "^1.0.0",
+        "webmozart/path-util": "^2.3"
     },
     "require-dev": {
+        "webflo/drupal-core-require-dev": "~8.5.3"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "config": {
         "sort-packages": true,
         "discard-changes": true
@@ -36,10 +41,10 @@
     "autoload": {
         "classmap": [
             "scripts/composer/ScriptHandler.php"
-        ]
+        ],
+        "files": ["load.environment.php"]
     },
     "scripts": {
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
         "pre-install-cmd": [
             "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
         ],
@@ -55,26 +60,12 @@
     },
     "extra": {
         "installer-paths": {
-            "docroot/core": [
-                "type:drupal-core"
-            ],
-            "docroot/libraries/{$name}": [
-                "type:drupal-library"
-            ],
-            "docroot/modules/contrib/{$name}": [
-                "type:drupal-module"
-            ],
-            "docroot/profiles/contrib/{$name}": [
-                "type:drupal-profile"
-            ],
-            "docroot/themes/contrib/{$name}": [
-                "type:drupal-theme"
-            ],
-            "drush/contrib/{$name}": [
-                "type:drupal-drush"
-            ]
-        },
-        "patches": {
+            "docroot/core": ["type:drupal-core"],
+            "docroot/libraries/{$name}": ["type:drupal-library"],
+            "docroot/modules/contrib/{$name}": ["type:drupal-module"],
+            "docroot/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "docroot/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/{$name}": ["type:drupal-drush"]
         }
     }
 }
